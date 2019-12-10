@@ -124,7 +124,7 @@ void toca(tipofila *F)
 
 int volta(tipofila *F)
 {
-    if ((*F)->indicador == (*F)->ini)
+    if (*F == NULL || (*F)->indicador == (*F)->ini)
     {
         return 0;
     }
