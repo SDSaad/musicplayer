@@ -135,6 +135,7 @@ int volta(tipofila *F)
         while (AuxCount != (*F)->indicador)
         {
             count++;
+            AuxCount = AuxCount->prox;
         }
         AuxCount = (*F)->ini;
         while (count > 1)
@@ -259,6 +260,7 @@ int main(){
     insere_musica(&fila, "TAKE ON ME");
     insere_musica(&fila, "SUCESSO");
     toca(&fila);
+    volta(&fila);
     toca(&fila);
     return 0;
 }
