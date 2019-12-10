@@ -33,7 +33,7 @@ tipofila cria_fila()
 
 int fila_vazia(tipofila F)
 {
-    if (F->ini == NULL)
+    if (F != NULL && F->ini == NULL)
     {
         return 1;
     }
@@ -46,7 +46,7 @@ int fila_vazia(tipofila F)
 int insere_musica(tipofila *F, char musica[])
 {
     struct nodo *N = (struct nodo *)malloc(sizeof(struct nodo));
-    if (N == NULL)
+    if (N == NULL || *F == NULL)
     {
         return 0;
     }
@@ -113,11 +113,11 @@ void toca(tipofila *F)
 {
     if ((*F)->indicador == (*F)->fim)
     {
-        printf("%s", (*F)->indicador->musica);
+        printf("%s\n", (*F)->indicador->musica);
     }
     else
     {
-        printf("%s", (*F)->indicador->musica);
+        printf("%s\n", (*F)->indicador->musica);
         (*F)->indicador = (*F)->indicador->prox;
     }
 }
@@ -189,6 +189,18 @@ void inverte(tipofila *F)
     }
 }
 
+int imprimeFila(tipofila F){
+    if(F == NULL){
+        return 0;
+    }
+    struct nodo *aux;
+    for(aux = F->ini; aux != NULL; aux = aux->prox){
+        printf("%s\n", aux->musica);
+    }
+    return 1;
+}
+
+/*
 int main()
 {
     tipofila playlist = cria_fila();
@@ -237,5 +249,16 @@ int main()
             i++;
         }
     }
+    return 0;
+}
+*/
+
+int main(){
+    tipofila fila;
+    fila = cria_fila();
+    insere_musica(&fila, "TAKE ON ME");
+    insere_musica(&fila, "SUCESSO");
+    toca(&fila);
+    toca(&fila);
     return 0;
 }
